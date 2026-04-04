@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Northstar Studio</title>
+  <meta
+    name="description"
+    content="Northstar Studio builds standout digital experiences for ambitious brands."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top">Northstar Studio</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Strategy. Design. Launch.</p>
+          <h1>Websites that feel alive, clear, and impossible to ignore.</h1>
+          <p class="lede">
+            We create expressive digital experiences for teams that need more
+            than a template and want a brand presence people actually remember.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Start a Project</a>
+            <a class="button button-secondary" href="#work">See the Work</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Studio snapshot">
+          <p class="hero-card-label">Live Snapshot</p>
+          <div class="stat">
+            <span class="stat-value">12</span>
+            <span class="stat-label">brands launched in the last year</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">4 wks</span>
+            <span class="stat-label">average sprint to first release</span>
+          </div>
+          <div class="hero-note">
+            Built for founders, studios, and product teams ready to look sharper
+            than the competition.
+          </div>
+        </aside>
+      </section>
+
+      <section class="marquee" aria-label="Capabilities">
+        <div class="marquee-track">
+          <span>Brand Systems</span>
+          <span>Launch Pages</span>
+          <span>Product Storytelling</span>
+          <span>Creative Direction</span>
+          <span>Responsive Build</span>
+          <span>Brand Systems</span>
+          <span>Launch Pages</span>
+          <span>Product Storytelling</span>
+        </div>
+      </section>
+
+      <section class="services" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">What We Do</p>
+          <h2>Small team, sharp execution.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>Identity Refresh</h3>
+            <p>
+              Clarify your message, visual direction, and conversion path before
+              a single screen gets designed.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Website Design</h3>
+            <p>
+              Custom layouts, motion, and typography that make your brand feel
+              distinctive on every screen size.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Fast Launch Support</h3>
+            <p>
+              We turn approved concepts into a release-ready site without
+              dragging the process into endless revision loops.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="work" id="work">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Direction</p>
+          <h2>Designed to feel editorial, modern, and high-trust.</h2>
+        </div>
+        <div class="work-grid">
+          <article class="work-card accent-sand">
+            <p class="work-type">Launch Site</p>
+            <h3>Atelier Nox</h3>
+            <p>
+              Reframed a boutique architecture firm with a calmer layout,
+              richer storytelling, and a premium lead funnel.
+            </p>
+          </article>
+          <article class="work-card accent-coral">
+            <p class="work-type">Product Marketing</p>
+            <h3>Signal Loop</h3>
+            <p>
+              Turned a technical AI platform into a clear, persuasive web
+              narrative for demos, investors, and hiring.
+            </p>
+          </article>
+          <article class="work-card accent-mint">
+            <p class="work-type">Brand Refresh</p>
+            <h3>Fieldwell</h3>
+            <p>
+              Built a more confident online identity for a wellness company
+              growing from local favorite to national presence.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="contact-panel">
+          <div>
+            <p class="eyebrow">Let's Build</p>
+            <h2>Need a site that feels custom instead of copied?</h2>
+          </div>
+          <form class="contact-form">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your name">
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com">
+            </label>
+            <label>
+              Project goals
+              <textarea name="message" rows="4" placeholder="What are you building?"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send Inquiry</button>
+            <p class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
