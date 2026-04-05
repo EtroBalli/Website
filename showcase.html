@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unification: Fazbear</title>
+  <meta
+    name="description"
+    content="A cinematic Unification: Fazbear landing page with teaser embed, about, contact, and community sections."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(210, 121, 32, 0.14), transparent 13%),
+        radial-gradient(circle at 16% 22%, rgba(60, 29, 14, 0.22), transparent 18%),
+        radial-gradient(circle at 86% 18%, rgba(33, 16, 9, 0.2), transparent 18%),
+        linear-gradient(180deg, #050505 0%, #0a0a0a 38%, #101010 100%);
+      color: #f1eadc;
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .uf-shell {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    @keyframes uf-rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .uf-shell::before,
+    .uf-shell::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .uf-shell::before {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(233, 158, 50, 0.12), transparent 11%),
+        radial-gradient(circle at 50% 22%, rgba(0, 0, 0, 0.18), transparent 28%),
+        radial-gradient(circle at 12% 80%, rgba(0, 0, 0, 0.78), transparent 34%),
+        radial-gradient(circle at 88% 80%, rgba(0, 0, 0, 0.78), transparent 34%);
+      opacity: 0.92;
+    }
+
+    .uf-shell::after {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.28)),
+        radial-gradient(circle at 50% 0%, rgba(255, 186, 73, 0.06), transparent 16%);
+      opacity: 0.88;
+    }
+
+    .uf-noise {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 4px 4px, 4px 4px;
+      mix-blend-mode: soft-light;
+    }
+
+    .uf-echoes {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.5;
+    }
+
+    .uf-echo {
+      position: absolute;
+      max-width: min(34vw, 26rem);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.15rem, 2.4vw, 2.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      color: rgba(247, 235, 214, 0.86);
+      text-shadow:
+        0 0 10px rgba(255, 160, 72, 0.18),
+        0 0 24px rgba(255, 112, 46, 0.08);
+      mix-blend-mode: screen;
+      filter: blur(0.1px);
+      animation:
+        uf-echo-drift 12s ease-in-out infinite,
+        uf-echo-flicker 4.8s steps(2, end) infinite;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .uf-echo:nth-child(odd) {
+      color: rgba(255, 230, 198, 0.82);
+    }
+
+    .uf-echo:nth-child(3n) {
+      color: rgba(255, 205, 148, 0.78);
+    }
+
+    .uf-echo.one {
+      top: 16%;
+      left: 8%;
+      animation-delay: 0s, 0.2s;
+    }
+
+    .uf-echo.two {
+      top: 28%;
+      right: 12%;
+      animation-delay: -2.2s, -0.8s;
+    }
+
+    .uf-echo.three {
+      top: 58%;
+      left: 14%;
+      animation-delay: -4.4s, -1.6s;
+    }
+
+    .uf-echo.four {
+      top: 76%;
+      right: 16%;
+      animation-delay: -6.1s, -2.4s;
+    }
+
+    @keyframes uf-echo-drift {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(-1deg);
+      }
+      25% {
+        transform: translate3d(10px, -6px, 0) rotate(1deg);
+      }
+      50% {
+        transform: translate3d(-12px, 5px, 0) rotate(-0.5deg);
+      }
+      75% {
+        transform: translate3d(8px, 10px, 0) rotate(0.8deg);
+      }
+    }
+
+    @keyframes uf-echo-flicker {
+      0%, 100% {
+        opacity: 0;
+      }
+      14% {
+        opacity: 0.28;
+      }
+      15% {
+        opacity: 0.08;
+      }
+      36% {
+        opacity: 0.5;
+      }
+      37% {
+        opacity: 0.12;
+      }
+      68% {
+        opacity: 0.34;
+      }
+      69% {
+        opacity: 0.1;
+      }
+    }
+
+    .uf-stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.8;
+    }
+
+    .star-layer {
+      position: absolute;
+      inset: 0;
+      transform: translate3d(0, calc(var(--scroll-y, 0px) * var(--parallax, 0)), 0);
+      transition: transform 90ms linear;
+      will-change: transform;
+    }
+
+    .star {
+      position: absolute;
+      display: block;
+      aspect-ratio: 1;
+      background: linear-gradient(180deg, rgba(255, 252, 245, 0.98), rgba(255, 205, 120, 0.92));
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      filter:
+        drop-shadow(0 0 12px rgba(255, 210, 126, 0.42))
+        drop-shadow(0 0 28px rgba(255, 157, 66, 0.22));
+      opacity: 0.26;
+    }
+
+    .star.small {
+      width: 0.85rem;
+    }
+
+    .star.medium {
+      width: 1.1rem;
+    }
+
+    .star.large {
+      width: 1.45rem;
+    }
+
+    .star.twinkle {
+      animation: star-twinkle 6.5s ease-in-out infinite;
+    }
+
+    @keyframes star-twinkle {
+      0%, 100% {
+        opacity: 0.18;
+        transform: scale(0.96);
+      }
+      50% {
+        opacity: 0.34;
+        transform: scale(1);
+      }
+    }
+
+    .uf-ceiling {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      z-index: 0;
+      width: min(1200px, 100vw);
+      height: 9rem;
+      transform: translateX(-50%);
+      pointer-events: none;
+      opacity: 0.18;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 72%),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.06) 0,
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px,
+          transparent 88px
+        );
+    }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-mark {
+      display: grid;
+      place-items: center;
+      padding: 1rem 0 1.4rem;
+      animation: uf-rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-mark img {
+      width: min(100%, 290px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(255, 145, 46, 0.2));
+    }
+
+    .hero-title-card {
+      margin-top: 0.8rem;
+      width: min(100%, 980px);
+      margin-inline: auto;
+      border-radius: 16px;
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 145, 46, 0.06);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      text-align: center;
+      overflow: hidden;
+      animation: uf-rise-in 720ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+    }
+
+    .hero-title-card h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(0.82rem, 2.25vw, 2.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #f5efe4;
+    }
+
+    .hero-title-card .lead-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-title-card .accent {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: clamp(2.35rem, 4.6vw, 4rem);
+      color: #ffb860;
+      text-shadow:
+        0 0 8px rgba(255, 174, 70, 0.55),
+        0 0 20px rgba(255, 145, 46, 0.35),
+        0 0 34px rgba(255, 123, 33, 0.18);
+    }
+
+    .synopsis-card {
+      margin-top: 1.15rem;
+      border-radius: 16px;
+      min-height: 9.5rem;
+      display: grid;
+      place-items: center;
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 145, 46, 0.06);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+      padding: clamp(1.35rem, 3vw, 2rem);
+      text-align: center;
+      animation: uf-rise-in 760ms cubic-bezier(0.16, 1, 0.3, 1) 170ms both;
+    }
+
+    .synopsis-card .card-heading {
+      margin: 0 0 0.65rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.2rem, 2.1vw, 1.8rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #f5efe4;
+      letter-spacing: -0.03em;
+    }
+
+    .synopsis-card p {
+      margin: 0;
+      width: 100%;
+      max-width: none;
+      margin-inline: auto;
+      display: grid;
+      gap: 0.08em;
+      justify-items: center;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.14rem, 1.8vw, 1.48rem);
+      font-weight: 600;
+      line-height: 1.48;
+      letter-spacing: 0.015em;
+      background: linear-gradient(180deg, #f4ead7 0%, #f4ead7 72%, #ffb860 90%, #fff4e0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .synopsis-line {
+      display: block;
+      max-width: 100%;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      margin-top: 1.15rem;
+      align-items: stretch;
+      animation: uf-rise-in 780ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
+    }
+
+    .content-card {
+      border-radius: 16px;
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 145, 46, 0.06);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+      padding: clamp(1.2rem, 2.6vw, 1.6rem);
+    }
+
+    .card-heading {
+      margin: 0 0 0.9rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.3rem, 2.4vw, 2rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #f5efe4;
+      text-align: center;
+      letter-spacing: -0.03em;
+    }
+
+    .embed-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #040404;
+      border: 1px solid rgba(255, 145, 46, 0.06);
+      display: grid;
+      place-items: center;
+    }
+
+    .embed-shell iframe,
+    .embed-shell .embed-placeholder {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .embed-shell iframe {
+      position: relative;
+      z-index: 1;
+    }
+
+    .embed-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 1.25rem;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.14), transparent 22%),
+        linear-gradient(180deg, rgba(10, 10, 10, 0.94), rgba(5, 5, 5, 0.98));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+    }
+
+    .embed-shell.has-fallback .embed-fallback {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .fallback-label {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #d9bc82;
+    }
+
+    .fallback-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 0.95;
+      color: #f5efe4;
+    }
+
+    .fallback-copy {
+      margin: 0.75rem auto 0;
+      max-width: 28ch;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+      line-height: 1.3;
+      color: #f2e3ca;
+    }
+
+    .embed-placeholder {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #f2e3ca;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 145, 46, 0.1), transparent 20%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.48));
+    }
+
+    .side-note {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.75rem;
+      justify-items: center;
+    }
+
+    .social-group {
+      width: min(100%, 720px);
+      display: grid;
+      gap: 0.75rem;
+      padding: 0.95rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 145, 46, 0.08);
+    }
+
+    .social-group h4 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d9bc82;
+      text-align: center;
+    }
+
+    .social-link {
+      appearance: none;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      justify-content: center;
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(61, 48, 31, 0.98), rgba(23, 19, 15, 0.99));
+      border: 1px solid rgba(255, 145, 46, 0.08);
+      color: #f6efe2;
+      font: inherit;
+      font-weight: 600;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: transform 180ms ease, filter 180ms ease, border-color 180ms ease;
+      cursor: pointer;
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .social-link.copied {
+      border-color: rgba(212, 169, 107, 0.34);
+    }
+
+    .social-icon {
+      width: 1.55rem;
+      height: 1.55rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #ffffff;
+      flex: 0 0 auto;
+    }
+
+    .social-icon svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      display: block;
+    }
+
+    .empty-card {
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.04), transparent 18%),
+        #0b0b0b;
+      border: 1px solid rgba(255, 145, 46, 0.06);
+    }
+
+    .detail-stack {
+      display: grid;
+      gap: 1.1rem;
+      min-height: 100%;
+    }
+
+    .panel-card {
+      min-height: 12rem;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 145, 46, 0.06), transparent 24%),
+        #0b0b0b;
+      border: 1px solid rgba(255, 145, 46, 0.06);
+    }
+
+    .media-card {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .media-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(11, 11, 11, 0.16), rgba(11, 11, 11, 0.72)),
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.06), transparent 28%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .media-card:hover::before,
+    .media-card:focus-visible::before {
+      background:
+        linear-gradient(180deg, rgba(11, 11, 11, 0.1), rgba(11, 11, 11, 0.54)),
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.1), transparent 28%);
+    }
+
+    .media-card.is-open::before {
+      background:
+        linear-gradient(180deg, rgba(11, 11, 11, 0.08), rgba(11, 11, 11, 0.62)),
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.12), transparent 28%);
+    }
+
+    .media-preview {
+      position: absolute;
+      inset: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.18rem;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .media-tile {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 12px;
+      transform: translateY(18%);
+      opacity: 0;
+      filter: saturate(0.9) contrast(1.05) brightness(0.75);
+      transition:
+        transform 560ms cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 260ms ease,
+        filter 260ms ease;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 0 0 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .media-card:hover .media-tile,
+    .media-card:focus-visible .media-tile {
+      transform: translateY(0);
+      opacity: 1;
+      filter: saturate(1.02) contrast(1.08) brightness(0.9);
+    }
+
+    .media-card:hover .media-tile:nth-child(1),
+    .media-card:focus-visible .media-tile:nth-child(1) {
+      transition-delay: 0s;
+    }
+
+    .media-card:hover .media-tile:nth-child(2),
+    .media-card:focus-visible .media-tile:nth-child(2) {
+      transition-delay: 90ms;
+    }
+
+    .media-card:hover .media-tile:nth-child(3),
+    .media-card:focus-visible .media-tile:nth-child(3) {
+      transition-delay: 180ms;
+    }
+
+    .media-card:hover .media-tile:nth-child(4),
+    .media-card:focus-visible .media-tile:nth-child(4) {
+      transition-delay: 270ms;
+    }
+
+    .media-tile.one {
+      background-image: url("Assets/IMG/MainBonniePoster.png");
+    }
+
+    .media-tile.two {
+      background-image: url("Assets/IMG/MainChicaPoster.png");
+    }
+
+    .media-tile.three {
+      background-image: url("Assets/IMG/MainFoxyPoster.png");
+    }
+
+    .media-tile.four {
+      background-image: url("Assets/IMG/MainFredPoster.png");
+    }
+
+    .media-options {
+      position: absolute;
+      inset: 0.95rem;
+      display: grid;
+      gap: 0.7rem;
+      align-content: center;
+      justify-items: center;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .media-card.is-open .media-options {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .media-card.is-open .media-option:nth-child(1) {
+      transition-delay: 60ms;
+    }
+
+    .media-card.is-open .media-option:nth-child(2) {
+      transition-delay: 120ms;
+    }
+
+    .media-option {
+      width: min(100%, 15rem);
+      appearance: none;
+      border: 1px solid rgba(255, 145, 46, 0.14);
+      border-radius: 999px;
+      padding: 0.88rem 1rem;
+      background:
+        linear-gradient(180deg, rgba(48, 36, 22, 0.96), rgba(18, 14, 11, 0.98)),
+        #0b0b0b;
+      color: #f6efe2;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+      transition: transform 180ms ease, filter 180ms ease, border-color 180ms ease;
+      cursor: pointer;
+    }
+
+    .media-option:hover,
+    .media-option:focus-visible {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .media-option[data-selected="true"] {
+      border-color: rgba(255, 182, 79, 0.34);
+      box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.24),
+        0 0 0 1px rgba(255, 182, 79, 0.12) inset;
+    }
+
+    .store-card {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .store-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(11, 11, 11, 0.16), rgba(11, 11, 11, 0.72)),
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.06), transparent 28%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .store-card.is-open::before {
+      background:
+        linear-gradient(180deg, rgba(11, 11, 11, 0.08), rgba(11, 11, 11, 0.62)),
+        radial-gradient(circle at 50% 18%, rgba(255, 145, 46, 0.12), transparent 28%);
+    }
+
+    .store-options {
+      position: absolute;
+      inset: 0.95rem;
+      display: grid;
+      gap: 0.7rem;
+      align-content: center;
+      justify-items: center;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .store-card.is-open .store-options {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .store-card.is-open .store-option:nth-child(1) {
+      transition-delay: 60ms;
+    }
+
+    .store-card.is-open .store-option:nth-child(2) {
+      transition-delay: 120ms;
+    }
+
+    .store-option {
+      width: min(100%, 15rem);
+      appearance: none;
+      border: 1px solid rgba(255, 145, 46, 0.14);
+      border-radius: 999px;
+      padding: 0.88rem 1rem;
+      background:
+        linear-gradient(180deg, rgba(48, 36, 22, 0.96), rgba(18, 14, 11, 0.98)),
+        #0b0b0b;
+      color: #f6efe2;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+      transition: transform 180ms ease, filter 180ms ease, border-color 180ms ease;
+      cursor: pointer;
+    }
+
+    .store-option:hover,
+    .store-option:focus-visible {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .store-option[data-selected="true"] {
+      border-color: rgba(255, 182, 79, 0.34);
+      box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.24),
+        0 0 0 1px rgba(255, 182, 79, 0.12) inset;
+    }
+
+    .panel-label {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      width: 100%;
+      padding: 1.1rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      color: #f5efe4;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 0 14px rgba(255, 145, 46, 0.12);
+      pointer-events: none;
+    }
+
+    .panel-card h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.9rem, 3.3vw, 2.8rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      color: #f5efe4;
+    }
+
+    .footer {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 1rem auto 2rem;
+      color: rgba(241, 234, 220, 0.68);
+      text-align: center;
+      font-size: 0.92rem;
+      animation: uf-rise-in 800ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    @media (max-width: 980px) {
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title-card h1 {
+        font-size: clamp(0.9rem, 5vw, 2rem);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero-mark {
+        padding-top: 0.6rem;
+      }
+
+      .hero-title-card h1 {
+        font-size: clamp(0.82rem, 4.6vw, 1.6rem);
+      }
+
+      .hero-title-card .accent {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
+
+      .hero-title-card .lead-line {
+        font-size: clamp(0.82rem, 4.4vw, 1.6rem);
+      }
+
+      .synopsis-card p {
+        font-size: clamp(1.02rem, 4vw, 1.16rem);
+        line-height: 1.46;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="uf-shell">
+    <div class="uf-noise" aria-hidden="true"></div>
+    <div class="uf-echoes" aria-hidden="true">
+      <div class="uf-echo one">why are you here?</div>
+      <div class="uf-echo two">Stop</div>
+      <div class="uf-echo three">You did this</div>
+      <div class="uf-echo four">I was first...</div>
+    </div>
+    <div class="uf-stars" aria-hidden="true">
+      <div class="star-layer" style="--parallax: 0.1;">
+        <span class="star small twinkle" style="top: 10%; left: 8%;"></span>
+        <span class="star small" style="top: 22%; left: 18%;"></span>
+        <span class="star medium twinkle" style="top: 16%; left: 42%;"></span>
+        <span class="star small" style="top: 30%; left: 74%;"></span>
+        <span class="star small twinkle" style="top: 48%; left: 12%;"></span>
+        <span class="star medium" style="top: 62%; left: 28%;"></span>
+        <span class="star small" style="top: 74%; left: 64%;"></span>
+        <span class="star small twinkle" style="top: 84%; left: 83%;"></span>
+        <span class="star small" style="top: 6%; left: 62%;"></span>
+        <span class="star medium twinkle" style="top: 40%; left: 88%;"></span>
+        <span class="star small" style="top: 56%; left: 48%;"></span>
+      </div>
+      <div class="star-layer" style="--parallax: 0.2;">
+        <span class="star medium twinkle" style="top: 12%; left: 28%;"></span>
+        <span class="star small" style="top: 28%; left: 52%;"></span>
+        <span class="star small twinkle" style="top: 38%; left: 82%;"></span>
+        <span class="star large" style="top: 56%; left: 20%;"></span>
+        <span class="star small" style="top: 66%; left: 46%;"></span>
+        <span class="star medium twinkle" style="top: 76%; left: 76%;"></span>
+        <span class="star small" style="top: 20%; left: 68%;"></span>
+        <span class="star medium" style="top: 44%; left: 6%;"></span>
+        <span class="star small twinkle" style="top: 88%; left: 58%;"></span>
+      </div>
+      <div class="star-layer" style="--parallax: 0.3;">
+        <span class="star small twinkle" style="top: 8%; left: 68%;"></span>
+        <span class="star medium" style="top: 24%; left: 86%;"></span>
+        <span class="star small" style="top: 40%; left: 36%;"></span>
+        <span class="star large twinkle" style="top: 58%; left: 58%;"></span>
+        <span class="star small" style="top: 70%; left: 10%;"></span>
+        <span class="star medium twinkle" style="top: 86%; left: 40%;"></span>
+        <span class="star small" style="top: 18%; left: 48%;"></span>
+        <span class="star medium twinkle" style="top: 50%; left: 78%;"></span>
+        <span class="star small" style="top: 78%; left: 24%;"></span>
+      </div>
+    </div>
+    <div class="uf-ceiling" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html#top" aria-label="Showtime Studios home">
+          <img src="Assets/IMG/StudioLogo.png" alt="Showtime Studios" class="brand-logo">
+        </a>
+
+        <nav class="topnav" aria-label="Primary">
+          <a class="nav-pill" href="#about">About Us</a>
+          <a class="nav-pill" href="#contact">Contact Us</a>
+          <a class="nav-pill" href="store.html">Store</a>
+          <div class="project-dropdown">
+            <button type="button" class="nav-pill project-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+              Our Projects
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="project-menu" hidden>
+              <a href="showcase.html">Unification: Fazbear</a>
+              <a href="precipice.html">FNAF: Precipice</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="hero-mark">
+        <img src="Assets/IMG/UFLogo2.png" alt="Unification Fazbear logo">
+      </section>
+
+      <section class="hero-title-card">
+        <h1>
+          <span class="lead-line">The Most Realistic FNAF Fan Series</span>
+          <span class="accent">Ever.</span>
+        </h1>
+      </section>
+
+      <section class="synopsis-card">
+        <p class="card-heading">Synopsis</p>
+        <p>
+          <span class="synopsis-line">Follow 3 Highschool boys as they explore an abandoned family entertainment restaurant, only to find out that what was meant to be a simple ghost hunt is bound to uncover</span>
+          <span class="synopsis-line">a 3 decade long secret, transcending what mankind thought was possible.</span>
+        </p>
+      </section>
+
+      <section class="detail-grid">
+      <article class="content-card">
+          <p class="card-heading">See our most recent teaser:</p>
+          <div class="embed-shell" aria-label="YouTube teaser embed slot">
+            <iframe
+              src="https://www.youtube.com/embed/vHbqSaleQks?si=k0iZIShDZnqPyk2n"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <div class="embed-fallback" aria-hidden="true">
+              <div>
+                <span class="fallback-label">Teaser Window</span>
+                <h3 class="fallback-title">The teaser is loading in the dark.</h3>
+                <p class="fallback-copy">If the player refuses to cooperate, this spot will still hold the mood until the embed is ready.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-note" id="contact">
+            <div class="social-group">
+              <h4>Unification Fazbear</h4>
+              <a href="https://x.com/UnificFazbear" target="_blank" rel="noreferrer" class="social-link">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M18.7 3h3.6l-7.9 9 9.2 9H17l-5.7-5.6L6.4 21H2.8l8.3-9.5L2 3h7.1l5.2 5.1L18.7 3Zm-1.3 16h2L8 5H5.8l11.6 14Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span>UnificFazbear</span>
+              </a>
+              <button type="button" class="social-link copy-email" data-email="UnificationFazbear@gmail.com">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm8 7.8L4.7 7h14.6L12 12.8ZM4 9.2V17h16V9.2L12 15 4 9.2Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span>UnificationFazbear@gmail.com</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <div class="detail-stack" aria-label="Media and store sections">
+          <div class="content-card panel-card media-card" role="button" tabindex="0" aria-expanded="false" aria-label="Media menu">
+            <div class="media-preview" aria-hidden="true">
+              <span class="media-tile one"></span>
+              <span class="media-tile two"></span>
+              <span class="media-tile three"></span>
+              <span class="media-tile four"></span>
+            </div>
+            <span class="panel-label">Media</span>
+            <div class="media-options" aria-hidden="true">
+              <button type="button" class="media-option">Promo</button>
+              <button type="button" class="media-option">In Universe</button>
+            </div>
+          </div>
+
+          <div class="content-card panel-card store-card" role="button" tabindex="0" aria-expanded="false" aria-label="Store menu">
+            <span class="panel-label">Store</span>
+            <div class="store-options" aria-hidden="true">
+              <a href="https://www.patreon.com/cw/UnificationFazbear" target="_blank" rel="noreferrer" class="store-option">Patreon</a>
+              <a href="store.html#uf-merch" class="store-option">Merch</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-links" aria-label="Footer links">
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+        <a href="showcase.html">Our Projects</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const ufShell = document.querySelector(".uf-shell");
+    if (ufShell) {
+      let scrollFrame = 0;
+      const updateStars = () => {
+        scrollFrame = 0;
+        ufShell.style.setProperty("--scroll-y", `${window.scrollY}px`);
+      };
+
+      const requestStarUpdate = () => {
+        if (scrollFrame) return;
+        scrollFrame = window.requestAnimationFrame(updateStars);
+      };
+
+      updateStars();
+      window.addEventListener("scroll", requestStarUpdate, { passive: true });
+      window.addEventListener("resize", requestStarUpdate);
+    }
+
+    const dropdown = document.querySelector(".project-dropdown");
+    const dropdownToggle = document.querySelector(".project-dropdown-toggle");
+    const dropdownMenu = document.querySelector(".project-menu");
+
+    if (dropdown && dropdownToggle && dropdownMenu) {
+      const closeMenu = () => {
+        dropdown.classList.remove("open");
+        dropdownToggle.setAttribute("aria-expanded", "false");
+        dropdownMenu.hidden = true;
+      };
+
+      const toggleMenu = () => {
+        const isOpen = dropdown.classList.toggle("open");
+        dropdownToggle.setAttribute("aria-expanded", String(isOpen));
+        dropdownMenu.hidden = !isOpen;
+      };
+
+      dropdownToggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleMenu();
+      });
+
+      dropdownMenu.addEventListener("click", (event) => {
+        if (event.target.closest("a")) closeMenu();
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!dropdown.contains(event.target)) closeMenu();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+    }
+
+    document.querySelectorAll(".copy-email").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const email = button.getAttribute("data-email");
+        if (!email) return;
+
+        try {
+          await navigator.clipboard.writeText(email);
+          const label = button.querySelector("span:last-child");
+          if (!label) return;
+          const original = label.textContent;
+          button.classList.add("copied");
+          label.textContent = "Copied!";
+          setTimeout(() => {
+            button.classList.remove("copied");
+            label.textContent = original || email;
+          }, 1200);
+        } catch {
+          window.prompt("Copy this email:", email);
+        }
+      });
+    });
+
+    const mediaCard = document.querySelector(".media-card");
+    const mediaOptions = mediaCard?.querySelector(".media-options");
+    const mediaButtons = Array.from(mediaCard?.querySelectorAll(".media-option") ?? []);
+
+    if (mediaCard && mediaOptions) {
+      const setOpen = (open) => {
+        mediaCard.classList.toggle("is-open", open);
+        mediaCard.setAttribute("aria-expanded", String(open));
+        mediaOptions.setAttribute("aria-hidden", String(!open));
+      };
+
+      mediaCard.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLElement && event.target.closest(".media-option")) {
+          return;
+        }
+        setOpen(!mediaCard.classList.contains("is-open"));
+      });
+
+      mediaCard.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setOpen(!mediaCard.classList.contains("is-open"));
+        } else if (event.key === "Escape") {
+          setOpen(false);
+        }
+      });
+
+      mediaButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          mediaButtons.forEach((other) => other.removeAttribute("data-selected"));
+          button.setAttribute("data-selected", "true");
+          setOpen(true);
+        });
+      });
+
+      mediaCard.addEventListener("pointerleave", () => {
+        setOpen(false);
+      });
+
+      mediaCard.addEventListener("blur", (event) => {
+        if (!mediaCard.contains(event.relatedTarget)) {
+          setOpen(false);
+        }
+      }, true);
+
+      document.addEventListener("click", (event) => {
+        if (!mediaCard.contains(event.target)) {
+          setOpen(false);
+        }
+      });
+    }
+
+    const storeCard = document.querySelector(".store-card");
+    const storeOptions = storeCard?.querySelector(".store-options");
+    const storeButtons = Array.from(storeCard?.querySelectorAll(".store-option") ?? []);
+
+    if (storeCard && storeOptions) {
+      const setStoreOpen = (open) => {
+        storeCard.classList.toggle("is-open", open);
+        storeCard.setAttribute("aria-expanded", String(open));
+        storeOptions.setAttribute("aria-hidden", String(!open));
+      };
+
+      storeCard.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLElement && event.target.closest(".store-option")) {
+          return;
+        }
+        setStoreOpen(!storeCard.classList.contains("is-open"));
+      });
+
+      storeCard.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setStoreOpen(!storeCard.classList.contains("is-open"));
+        } else if (event.key === "Escape") {
+          setStoreOpen(false);
+        }
+      });
+
+      storeButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          storeButtons.forEach((other) => other.removeAttribute("data-selected"));
+          button.setAttribute("data-selected", "true");
+          setStoreOpen(true);
+        });
+      });
+
+      storeCard.addEventListener("pointerleave", () => {
+        setStoreOpen(false);
+      });
+
+      storeCard.addEventListener("blur", (event) => {
+        if (!storeCard.contains(event.relatedTarget)) {
+          setStoreOpen(false);
+        }
+      }, true);
+
+      document.addEventListener("click", (event) => {
+        if (!storeCard.contains(event.target)) {
+          setStoreOpen(false);
+        }
+      });
+    }
+
+    const embedShell = document.querySelector(".embed-shell");
+    const teaserFrame = embedShell?.querySelector("iframe");
+    if (embedShell && teaserFrame) {
+      const showFallback = () => embedShell.classList.add("has-fallback");
+      const hideFallback = () => embedShell.classList.remove("has-fallback");
+
+      teaserFrame.addEventListener("load", () => {
+        hideFallback();
+        setTimeout(() => {
+          try {
+            const doc = teaserFrame.contentDocument;
+            if (!doc || doc.body.innerText.includes("Video unavailable")) {
+              showFallback();
+            }
+          } catch {
+            hideFallback();
+          }
+        }, 1200);
+      });
+
+      teaserFrame.addEventListener("error", showFallback);
+      setTimeout(() => {
+        if (!embedShell.classList.contains("has-fallback")) {
+          hideFallback();
+        }
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
